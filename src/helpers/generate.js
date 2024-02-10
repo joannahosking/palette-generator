@@ -9,7 +9,7 @@ export const map = (n, start1, end1, start2, end2) => {
   return ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 };
 
-export const createPalette = (primary) => {
+export const createPalette = (primary, shift) => {
   const primaryLch = chroma(primary).lch();
   const base = {
     l: primaryLch[0],
@@ -18,7 +18,7 @@ export const createPalette = (primary) => {
   };
   const minLightness = 1;
   const maxLightness = 99;
-  const hueStep = 15;
+  const hueStep = shift;
   const newPalette = [base];
 
   for (let i = 1; i < 4; i++) {

@@ -1,50 +1,24 @@
 import { useState, useEffect } from "react";
-import chroma from "chroma-js";
+import Swatch from '../components/Swatch';
 import { createPalette, getComplementary } from "../helpers/generate";
 
 const Complementary = (props) => {
-  const { primary } = { ...props };
-  const [complementaryPalette, setComplementaryPalette] = useState(createPalette(getComplementary(primary)));
+  const { primary,shift } = { ...props };
+  const [complementaryPalette, setComplementaryPalette] = useState(createPalette(getComplementary(primary), shift));
 
   useEffect(() => {
-    setComplementaryPalette(createPalette(getComplementary(primary)));
-  }, [primary]);
+    setComplementaryPalette(createPalette(getComplementary(primary), shift));
+  }, [primary, shift]);
 
   return (
     <div className="palette">
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[0] }} />
-        <label>{chroma(complementaryPalette[0]).hex()}</label>
-      </div>
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[1] }} />
-        <label>{chroma(complementaryPalette[1]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[2] }} />
-        <label>{chroma(complementaryPalette[2]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[3] }} />
-        <label>{chroma(complementaryPalette[3]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[4] }} />
-        <label>{chroma(complementaryPalette[4]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[5] }} />
-        <label>{chroma(complementaryPalette[5]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: complementaryPalette[6] }} />
-        <label>{chroma(complementaryPalette[6]).hex()}</label>
-      </div>
+      <Swatch color={complementaryPalette[0]} />
+      <Swatch color={complementaryPalette[1]} />
+      <Swatch color={complementaryPalette[2]} />
+      <Swatch color={complementaryPalette[3]} />
+      <Swatch color={complementaryPalette[4]} />
+      <Swatch color={complementaryPalette[5]} />
+      <Swatch color={complementaryPalette[6]} />
     </div>
   );
 };

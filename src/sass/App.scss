@@ -42,17 +42,46 @@ input[type="color"] {
     position: relative;
     display: block;
     width: 100%;
-
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 5px rgba(0 0 0 / 15%);
+    overflow: hidden;
+    
     div {
         position: relative;
         width: 100%;
         aspect-ratio: 2 / 1;
+        cursor: pointer;
+        
+        &:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            mask-image: url('../assets/copy.svg');
+            -webkit-mask-image: url('../assets/copy.svg');
+            mask-position: center;
+            -webkit-mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            background-color: currentColor;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease-out;
+        }
+
+        &:hover {
+            &:after {
+                opacity: 1;
+            }
+        }
     }
     
     label {
         display: block;
-        margin-top: 0.25rem;
-        text-align: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
         text-transform: uppercase;
     }
 
@@ -63,6 +92,22 @@ input[type="color"] {
 
         label {
             display: none;
+        }
+    }
+
+    &.primary {
+        transition: box-shadow 0.2s ease-in-out;
+
+        div {
+            &:after {
+                mask-image: url('../assets/eyedropper.svg');
+                -webkit-mask-image: url('../assets/eyedropper.svg');
+                opacity: 1;
+            }
+        }
+
+        &:has(div:hover) {
+            box-shadow: 0 2px 5px rgba(0 0 0 / 60%);
         }
     }
 }

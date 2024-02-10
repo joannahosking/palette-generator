@@ -1,32 +1,25 @@
 import { useState, useEffect } from "react";
 import chroma from "chroma-js";
+import Swatch from '../components/Swatch';
 import { createPalette } from "../helpers/generate";
 
 const Primary = (props) => {
-  const { primary, setPrimary } = { ...props };
-  const [primaryPalette, setPrimaryPalette] = useState(createPalette(primary));
+  const { primary, setPrimary, shift } = { ...props };
+  const [primaryPalette, setPrimaryPalette] = useState(createPalette(primary, shift));
 
   useEffect(() => {
-    setPrimaryPalette(createPalette(primary));
-  }, [primary]);
+    setPrimaryPalette(createPalette(primary, shift));
+  }, [primary, shift]);
+
+  let textColor = chroma(primary).lch()[0] < 65 ? 'white' : '';
 
   return (
     <div className="palette">
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[0] }} />
-        <label>{chroma(primaryPalette[0]).hex()}</label>
-      </div>
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[1] }} />
-        <label>{chroma(primaryPalette[1]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[2] }} />
-        <label>{chroma(primaryPalette[2]).hex()}</label>
-      </div>
+      <Swatch color={primaryPalette[0]} />
+      <Swatch color={primaryPalette[1]} />
+      <Swatch color={primaryPalette[2]} />
       <div className="swatch primary">
-        <div style={{ backgroundColor: primary }}>
+        <div style={{ backgroundColor: primary, color: textColor }}>
           <input
             type="color"
             name="primary"
@@ -36,21 +29,9 @@ const Primary = (props) => {
         </div>
         <label>{chroma(primary).hex()}</label>
       </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[4] }} />
-        <label>{chroma(primaryPalette[4]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[5] }} />
-        <label>{chroma(primaryPalette[5]).hex()}</label>
-      </div>
-
-      <div className="swatch">
-        <div style={{ backgroundColor: primaryPalette[6] }} />
-        <label>{chroma(primaryPalette[6]).hex()}</label>
-      </div>
+      <Swatch color={primaryPalette[4]} />
+      <Swatch color={primaryPalette[5]} />
+      <Swatch color={primaryPalette[6]} />
     </div>
   );
 };
