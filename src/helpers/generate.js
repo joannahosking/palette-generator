@@ -46,9 +46,8 @@ export const createPalette = (primary) => {
 };
 
 export const getComplementary = (primary) => {
-    const primaryLch = chroma(primary).lch();
-    let hue = primaryLch[2] + 180 > 360 ? 360 % (primaryLch[2] + 180) : primaryLch[2] + 180;
-    return chroma(primaryLch[0], primaryLch[1], hue, 'lch').hex();
+    const primaryRgb = chroma(primary).rgb();
+    return chroma(255 - primaryRgb[0], 255 - primaryRgb[1], 255 - primaryRgb[2], 'rgb').hex();
 }
 
 export const getTriadic = (primary) => {

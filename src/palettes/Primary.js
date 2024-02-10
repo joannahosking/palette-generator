@@ -25,13 +25,15 @@ const Primary = (props) => {
         <div style={{ backgroundColor: primaryPalette[2] }} />
         <label>{chroma(primaryPalette[2]).hex()}</label>
       </div>
-      <div className="swatch">
-        <input
-          type="color"
-          name="primary"
-          value={primary}
-          onChange={(e) => setPrimary(e.target.value)}
-        />
+      <div className="swatch primary">
+        <div style={{ backgroundColor: primary }}>
+          <input
+            type="color"
+            name="primary"
+            value={primary}
+            onChange={(e) => setPrimary(e.target.value)}
+          />
+        </div>
         <label>{chroma(primary).hex()}</label>
       </div>
 
