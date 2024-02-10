@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Primary from "./palettes/Primary";
+import Complementary from "./palettes/Complementary";
+import Triadic from "./palettes/Triadic";
+import "./sass/App.scss";
 
 function App() {
+  const [primary, setPrimary] = useState("#e26969");
+
+  useEffect(() => {
+    console.log(primary);
+  }, [primary]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Primary primary={primary} setPrimary={setPrimary} />
+      <h2>Complementary</h2>
+      <Complementary primary={primary} />
+      <h2>Triadic</h2>
+      <Triadic primary={primary} />
     </div>
   );
 }
