@@ -1,0 +1,19 @@
+.palette {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.swatch {
+    display: block;
+
+    div {
+        width: 100px;
+        aspect-ratio: 2 / 1;
+    }
+
+    label {
+        display: block;
+        margin-top: 0.25rem;
+        text-align: center;
+    }
+}
