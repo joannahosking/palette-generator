@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Shifty Palette Generator</h1>
-      <p>Hue shifting combines hue alongside lightness when shading and highlighting. Select the central colour of your primary palette. Adjust the shift higher to intensify the effect or adjust lower to generate a monochromatic palette.</p>
+      <h1>Palette Generator</h1>
+      <p>Generate a series of hue shifted palettes. Hue shifting combines hue alongside lightness when shading and highlighting. Select the central colour of your primary palette. Adjust the shift higher to intensify the effect or adjust lower to generate a monochromatic palette.</p>
       <Slider shift={shift} setShift={setShift} />
       <div id="palettes-wrapper">
         <h2>Primary</h2>
