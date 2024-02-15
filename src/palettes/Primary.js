@@ -25,6 +25,7 @@ const Primary = (props) => {
             name="primary"
             value={primary}
             onChange={(e) => setPrimary(e.target.value)}
+            aria-label="Select colour"
           />
         </div>
         <label>{chroma(primary).hex()}</label>
