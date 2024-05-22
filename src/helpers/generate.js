@@ -53,6 +53,6 @@ export const getComplementary = (primary) => {
 export const getTriadic = (primary) => {
     const primaryLch = chroma(primary).lch();
     let firstHue = primaryLch[2] - 120;
-    let secondHue = firstHue + 120;
+    let secondHue = primaryLch[2] + 120;
     return [chroma(primaryLch[0], primaryLch[1], firstHue, 'lch').hex(), chroma(primaryLch[0], primaryLch[1], secondHue, 'lch').hex()];
 }

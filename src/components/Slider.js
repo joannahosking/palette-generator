@@ -4,7 +4,7 @@ const Slider = (props) => {
 
     return (
         <div className="shift-slider">
-        <label for="shift">Shift:</label>
+        <label htmlFor="shift">Shift:</label>
         <div className="wrapper">
             <input name="shift" id="shift" type="range" min="0" max={max} value={shift} onChange={(e) => setShift(e.target.value)} />
             <span className="slide" style={{transform: `scaleX(${shift / max})`}}></span>
