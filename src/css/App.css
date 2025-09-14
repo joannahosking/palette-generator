@@ -37,6 +37,19 @@ body {
   p {
     max-width: 45rem;
     margin: 0;
+
+    & + p {
+      margin-top: 0.75rem;
+    }
+
+    a {
+      color: inherit;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: #e26969;
+      }
+    }
   }
 
   @media (max-width: 750px) {
