@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from 'next/script';
 import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -29,6 +30,8 @@ export default function RootLayout({
             </p>
           </footer>
         </div>
+        <Script data-goatcounter="https://joannahosking.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js" />
       </body>
     </html>
   );
