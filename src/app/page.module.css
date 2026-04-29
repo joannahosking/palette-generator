@@ -1,0 +1,41 @@
+.small {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.faq {
+  margin-top: 2.5rem;
+  border-top: 1px solid #c4c4c4;
+
+  p {
+    max-width: none;
+  }
+}
+
+.paletteHeader {
+  display: grid;
+  grid-template-columns: 1fr min-content min-content;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 2rem 0.5rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  button {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background-color: #f1f6fa;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    color: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+
+    &:hover {
+      background-color: #fff0f0;
+    }
+  }
+}

@@ -1,0 +1,108 @@
+.swatch {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0 0 0 / 15%);
+  overflow: hidden;
+  cursor: pointer;
+
+  div {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+
+    &:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      mask-image: url("/icons/copy.svg");
+      -webkit-mask-image: url("/icons/copy.svg");
+      mask-position: center;
+      -webkit-mask-position: center;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      background-color: currentColor;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease-out;
+    }
+  }
+
+  &:hover {
+    div:after {
+      opacity: 1;
+    }
+  }
+
+  label {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  @media (max-width: 750px) {
+    div {
+      aspect-ratio: 1;
+    }
+
+    label {
+      display: none;
+    }
+  }
+
+  &[data-editable="true"] {
+    transition: box-shadow 0.2s ease-in-out;
+
+    div {
+      &:after {
+        mask-image: url("/icons/eyedropper.svg");
+        -webkit-mask-image: url("/icons/eyedropper.svg");
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 2px 5px rgba(0 0 0 / 60%);
+    }
+  }
+
+  input[type="color"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.copied {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -42%);
+  padding: 0.18rem 0.5rem 0.25rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  color: #0e1111;
+  font-size: 0.825rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  pointer-events: none;
+}
+
+.swatch[data-copied="true"] .copied {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.swatch[data-copied="true"] div::after {
+  opacity: 0;
+}
