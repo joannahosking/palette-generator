@@ -2,13 +2,8 @@ import chroma from "chroma-js";
 
 const adjustHue = (h: number) => ((h % 360) + 360) % 360;
 
-const map = (
-  n: number,
-  a: number,
-  b: number,
-  c: number,
-  d: number
-) => ((n - a) / (b - a)) * (d - c) + c;
+const map = (n: number, a: number, b: number, c: number, d: number) =>
+  ((n - a) / (b - a)) * (d - c) + c;
 
 const createHueRamp = (base: chroma.Color, shift: number) => {
   const [l, c, h] = base.lch();
@@ -36,6 +31,19 @@ const createHueRamp = (base: chroma.Color, shift: number) => {
   return colors;
 };
 
+const getComplementary = (base: chroma.Color) => {
+  const [r, g, b] = base.rgb();
+  return chroma.rgb(255 - r, 255 - g, 255 - b);
+};
+
+const getTriadic = (base: chroma.Color): [chroma.Color, chroma.Color] => {
+  const [l, c, h] = base.lch();
+  return [
+    chroma.lch(l, c, adjustHue(h - 120)),
+    chroma.lch(l, c, adjustHue(h + 120)),
+  ];
+};
+
 const createValueRamp = (base: chroma.Color) => {
   const [l, c, h] = base.lch();
 
@@ -49,23 +57,23 @@ const createValueRamp = (base: chroma.Color) => {
     const saturation = 0;
 
     return chroma
-      .lch(
-        Math.max(0, Math.min(100, lightness)),
-        chromaAdjusted,
-        h
-      )
+      .lch(Math.max(0, Math.min(100, lightness)), chromaAdjusted, h)
       .hex();
   });
 };
 
-export const generatePalettes = (
-  primary: string,
-  shift: number
-) => {
+export const generatePalettes = (primary: string, shift: number) => {
   const base = chroma(primary);
+  const complementaryBase = getComplementary(base);
+  const [tradicBase1, tradicBase2] = getTriadic(base);
 
   return {
     primary: createHueRamp(base, shift),
+    complementary: createHueRamp(complementaryBase, shift),
+    triadic: [
+      createHueRamp(tradicBase1, shift),
+      createHueRamp(tradicBase2, shift),
+    ],
     valueRamp: createValueRamp(base),
   };
 };
