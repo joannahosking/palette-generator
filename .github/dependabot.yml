@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    # Bundle updates into fewer PRs
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+    # Skip noisy or risky packages
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
