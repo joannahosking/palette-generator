@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "chroma-js": "^3.2.0",
-    "next": "16.2.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
   },
   "devDependencies": {
     "@types/chroma-js": "^3.1.2",
